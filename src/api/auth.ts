@@ -54,13 +54,13 @@ const getNote = async (id: string) => {
   if (data) return data;
 };
 
-const updateNote = async (value, id) => {
+const updateNote = async (value: any, id: any) => {
   const { data } = await apiClient.patch(`/notes/${id}`, value);
 
   if (data) return data;
 };
 
-const deleteNote = async (id) => {
+const deleteNote = async (id: any) => {
   const { data } = await apiClient.delete(`/notes/${id}`);
 
   if (data) return data;
