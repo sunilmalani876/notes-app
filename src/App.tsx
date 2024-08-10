@@ -47,7 +47,9 @@ function App() {
 const GoToLogin = () => {
   return (
     <div className="w-full h-full flex flex-col gap-2 justify-center items-center">
-      <p className="text-xl font-semibold">Create A Notes 👇.</p>
+      <p className="text-xl font-semibold text-black dark:text-white">
+        Create A Notes 👇.
+      </p>
       <Link to={"/login"}>
         <Button className="w-full max-w-[140px] dark:bg-pink-400 dark:text-white dark:hover:bg-pink-400/90 text-lg px-5">
           LogIn
