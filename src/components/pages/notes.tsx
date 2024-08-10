@@ -52,7 +52,7 @@ const Notes = () => {
         </span>
       </p>
 
-      <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+      <div className="w-full pb-3 grid md:grid-cols-2 lg:grid-cols-3 gap-7">
         {userNotes && userNotes.length > 0
           ? userNotes.map((i, index) => (
               <div
