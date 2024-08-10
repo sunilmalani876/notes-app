@@ -10,8 +10,8 @@ const Sidebar = () => {
     colorStore();
 
   return (
-    <div className="w-full max-w-[80px] h-screen bg-neutral-100 dark:bg-slate-800 md:flex flex-col items-center sticky left-0 top-0 gap-2 overflow-y-auto border-r hidden pt-12">
-      <div className="flex-center flex-row-reverse sm:flex-col gap-5">
+    <div className="w-full max-w-[80px] h-screen bg-neutral-100 dark:bg-slate-800 flex flex-col items-center sticky left-0 top-0 gap-2 overflow-y-auto border-r pt-12">
+      <div className="flex flex-col gap-5">
         <button
           className={`transition-all ${
             showColorVariants ? "rotate-90" : "rotate-0"
@@ -23,7 +23,7 @@ const Sidebar = () => {
 
         <div
           className={cn([
-            "flex sm:flex-col gap-2.5 pt-3 sm:gap-4 opacity-0",
+            "flex flex-col gap-2.5 pt-3 sm:gap-4 opacity-0",
             { "opacity-100": showColorVariants },
           ])}
         >
