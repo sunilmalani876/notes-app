@@ -10,7 +10,7 @@ const Sidebar = () => {
     colorStore();
 
   return (
-    <div className="w-full max-w-[100px] min-h-screen dark:bg-slate-800 md:flex flex-col items-center sticky left-0 top-0 gap-2 overflow-y-auto border-r hidden pt-12">
+    <div className="w-full max-w-[80px] h-screen bg-neutral-100 dark:bg-slate-800 md:flex flex-col items-center sticky left-0 top-0 gap-2 overflow-y-auto border-r hidden pt-12">
       <div className="flex-center flex-row-reverse sm:flex-col gap-5">
         <button
           className={`transition-all ${

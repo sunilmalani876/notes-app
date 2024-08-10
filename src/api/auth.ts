@@ -1,4 +1,3 @@
-import userStore from "@/store/user";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -24,22 +23,55 @@ apiClient.interceptors.request.use(
 );
 
 const registerUser = (data: { email: string; password: string }) => {
-  console.log(data);
-
   return apiClient.post("/sign-in", data);
 };
 
-const currentUser = () => {
-  const { data } = apiClient.get("/");
-  // console.log(data);
+const currentUser = async () => {
+  const {
+    data: { data },
+  } = await apiClient.get("/");
 
-  // if (data) {
-  //   // Cookies.set("accessToken", data.accessToken);
-  //   // const token = Cookies.get("accessToken");
-  //   // console.log(token);
-  // }
-
-  return data;
+  if (data) return data.email;
 };
 
-export { registerUser, currentUser };
+const createNote = (values: {
+  title: string;
+  content: string;
+  color: string;
+}) => {
+  return apiClient.post("/notes", values);
+};
+
+const getAllNotes = async () => {
+  const data = await apiClient.get("/notes");
+
+  if (data) return data;
+};
+
+const getNote = async (id: string) => {
+  const { data } = await apiClient.get(`/notes/${id}`);
+
+  if (data) return data;
+};
+
+const updateNote = async (value, id) => {
+  const { data } = await apiClient.patch(`/notes/${id}`, value);
+
+  if (data) return data;
+};
+
+const deleteNote = async (id) => {
+  const { data } = await apiClient.delete(`/notes/${id}`);
+
+  if (data) return data;
+};
+
+export {
+  createNote,
+  currentUser,
+  deleteNote,
+  getAllNotes,
+  getNote,
+  registerUser,
+  updateNote,
+};

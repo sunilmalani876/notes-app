@@ -7,7 +7,7 @@ const Home = () => {
     <div className="w-full flex relative">
       <Header />
       <Sidebar />
-      <div className="w-full pt-14 text-white px-3">
+      <div className="w-full min-h-screen pt-14 text-white px-3">
         <Outlet />
       </div>
     </div>

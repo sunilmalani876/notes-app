@@ -9,6 +9,7 @@ import { registerUser } from "@/api/auth";
 import userStore from "@/store/user";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useAuth } from "@/context/authProvider";
 
 const schema = z.object({
   email: z.string().email(),
@@ -21,6 +22,7 @@ const LogIn = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const { setUserState, userState } = userStore();
+  const { setToken } = useAuth();
 
   const {
     register,
@@ -37,11 +39,11 @@ const LogIn = () => {
     try {
       const { data } = await registerUser(values);
 
-      console.log(data);
-
       if (data.success === true) {
         Cookies.set("token", data.data.accessToken);
+        setToken(data.data.accessToken);
         setUserState(data.data);
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
@@ -74,14 +76,11 @@ const LogIn = () => {
             id="email"
             name="email"
             placeholder="john@example.com"
-            // value={formData.email || ""}
-            // onChange={handleChange}
             autoComplete="on"
           />
           {errors.email && (
             <span className="text-red-500 text-sm">{errors.email.message}</span>
           )}
-          {/* <p className="error-text">{errors.email}</p> */}
         </div>
 
         <div className="w-full max-w-sm flex flex-col gap-2">
