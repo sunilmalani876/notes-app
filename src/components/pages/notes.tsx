@@ -2,6 +2,7 @@ import { currentUser, deleteNote, getAllNotes } from "@/api/auth";
 import { SquarePen, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 const Notes = () => {
   // const { setUserState, userState } = userStore();
@@ -31,11 +32,12 @@ const Notes = () => {
     const data = await deleteNote(i.title);
 
     if (data.success) {
-      console.log("delete data", data);
       const filterdNotes = userNotes.filter(
         (note: any) => note.title !== i.title
       );
       setUserNotes(filterdNotes);
+
+      toast.success(data.message);
     }
 
     // console.log(i);

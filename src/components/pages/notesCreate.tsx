@@ -7,6 +7,7 @@ import Tick from "@/icons/tick";
 import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
 import { createNote, getNote, updateNote } from "@/api/auth";
+import { toast } from "sonner";
 
 const NotesCreate = () => {
   const navigate = useNavigate();
@@ -47,21 +48,27 @@ const NotesCreate = () => {
   };
 
   const handleSubmit = async () => {
-    if (id) {
-      const content = { content: data.content, color };
-      const result = await updateNote(content, id);
+    try {
+      if (id) {
+        const content = { content: data.content, color };
+        const result = await updateNote(content, id);
 
-      if (result.success) {
-        navigate("/");
+        if (result.success) {
+          toast.success(result.message);
+          navigate("/");
+        }
+      } else {
+        const newData = { ...data, color: style };
+
+        const notesData = await createNote(newData);
+
+        if (notesData.data.success) {
+          toast.success(notesData.data.message);
+          navigate("/");
+        }
       }
-    } else {
-      const newData = { ...data, color: style };
-
-      const notesData = await createNote(newData);
-
-      if (notesData.data.success) {
-        navigate("/");
-      }
+    } catch (error) {
+      toast.error(error.response.data.data.message);
     }
   };
 
